@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>LFC 積木畫｜三種視覺方向</title>
+  <script>document.documentElement.dataset.style=['a','b','c'].includes(new URLSearchParams(location.search).get('style'))?new URLSearchParams(location.search).get('style'):'a';</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="directions.css">
+  <script defer src="directions.js"></script>
+</head>
+<body>
+  <aside class="compare" aria-label="視覺草稿比較">
+    <span class="compare-label">LFC <span>視覺探索</span></span>
+    <nav aria-label="切換設計版本">
+      <a href="?style=a" data-variant="a"><b>A</b> 編輯式</a>
+      <a href="?style=b" data-variant="b"><b>B</b> 海報式</a>
+      <a href="?style=c" data-variant="c"><b>C</b> 溫暖人文</a>
+    </nav>
+    <span class="compare-status">獨立首屏草稿</span>
+  </aside>
+  <a class="skip" href="#main">跳至主要內容</a>
+  <header class="header">
+    <a class="brand" href="directions.html" aria-label="LFC 積木畫預覽首頁"><img src="direction-logo.png" alt="LFC" width="52" height="52"><span>林爸角落<span>LFC BRICK ART</span></span></a>
+    <nav class="site-nav" aria-label="客戶服務">
+      <a href="https://ricksgemini0857.github.io/lfc-block-painting-effect/" target="_blank" rel="noopener">查詢效果圖 <span>↗</span></a>
+      <a href="https://ricksgemini0857.github.io/lfc-manual-query-system/" target="_blank" rel="noopener">查詢說明書 <span>↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="version editorial" aria-labelledby="title-a">
+      <div class="editorial-copy">
+        <p class="eyebrow">THE ART OF LITTLE THINGS <span>積木畫作品預覽</span></p>
+        <h1 id="title-a">把喜歡的畫面，<br><em>一顆顆</em>收藏。</h1>
+        <p class="intro">從一張照片，到一幅可以親手完成的作品。<br>先看看積木的色彩與細節，再開始你的拼裝旅程。</p>
+        <a class="text-action" href="https://ricksgemini0857.github.io/lfc-block-painting-effect/" target="_blank" rel="noopener">查詢我的效果圖 <span>↗</span></a>
+        <div class="editorial-detail"><button class="detail-photo" data-open-art aria-label="放大查看積木顆粒細節"><img src="direction-art.png" alt="橘貓積木畫的顆粒細節" width="1122" height="1402"></button><div><span class="eyebrow">A CLOSER LOOK</span><p>近看，是積木。<br>遠看，是你喜歡的模樣。</p><button class="small-link" data-open-art>看看完整效果 ↗</button></div></div>
+      </div>
+      <figure class="editorial-figure">
+        <div class="editorial-wall"><span class="wall-index">LFC / BRICK ART</span><button class="art-button" data-open-art aria-label="放大橘貓積木畫示意"><img src="direction-art.png" alt="黑框橘貓積木畫，藍色背景與可見的圓形積木顆粒" width="1122" height="1402"><span class="image-cta">放大作品 <span>↗</span></span></button></div>
+        <figcaption><span>橘貓的日常 <small>AI 展示示意</small></span><span>點擊作品，細看每一顆。</span></figcaption>
+      </figure>
+      <div class="editorial-document"><span class="folio">02 / READING ROOM</span><div><h2>從欣賞，到親手拼裝。</h2><p>效果圖與說明書，陪你完成同一幅作品。</p></div><button class="document-link" data-open-pdf>預覽邊框說明書 <span>↗</span></button><a class="small-link" href="https://ricksgemini0857.github.io/lfc-manual-query-system/" target="_blank" rel="noopener">查詢我的拼裝說明書 ↗</a></div>
+    </section>
+
+    <section class="version poster" aria-labelledby="title-b">
+      <div class="poster-top"><p>小小積木。<br>大大喜歡。</p><span>PHOTOS INTO<br>BRICK ART ↘</span></div>
+      <div class="poster-main">
+        <div class="poster-copy"><p class="eyebrow">LFC 積木畫效果預覽</p><h1 id="title-b">喜歡，<br>就<span>拼</span><br>出來。</h1><p class="poster-desc">讓照片走出螢幕。<br>把喜歡的模樣，拼成看得見的日常。</p></div>
+        <figure class="poster-figure"><span class="poster-side">LOOK CLOSER. BUILD SOMETHING YOU LOVE.</span><button class="art-button" data-open-art aria-label="放大海報中的橘貓積木畫"><img src="direction-art.png" alt="橘貓積木畫示意，以海報般的大幅作品呈現" width="1122" height="1402"><span class="poster-round">點擊<br>放大 ↗</span></button><figcaption><span>橘貓的日常</span><small>AI 展示示意 · 非客戶訂單</small></figcaption></figure>
+      </div>
+      <div class="poster-actions"><a href="https://ricksgemini0857.github.io/lfc-block-painting-effect/" target="_blank" rel="noopener"><span>看見你的作品</span><strong>查詢效果圖 ↗</strong></a><a href="https://ricksgemini0857.github.io/lfc-manual-query-system/" target="_blank" rel="noopener"><span>準備開始動手</span><strong>查詢說明書 ↗</strong></a><button data-open-pdf><span>先了解怎麼拼</span><strong>預覽邊框 PDF ↗</strong></button></div>
+    </section>
+
+    <section class="version humanist" aria-labelledby="title-c">
+      <div class="desk-scene"><span class="desk-note">給喜歡動手的你</span><div class="green-mat"><span>PIECE BY PIECE</span></div><figure class="paper-photo"><button class="art-button" data-open-art aria-label="放大工作桌上的橘貓積木畫"><img src="direction-art.png" alt="像相紙般放在溫暖工作桌上的橘貓積木畫示意" width="1122" height="1402"></button><figcaption>橘貓的日常 <span>AI 展示示意</span></figcaption></figure><button class="desk-caption" data-open-art>把畫面放大，<br>看看積木的小細節。 <span>↗</span></button></div>
+      <div class="humanist-copy"><p class="eyebrow">在林爸角落，慢慢拼出喜歡。</p><h1 id="title-c">讓喜歡的日常，<br>有了<span>積木的溫度。</span></h1><p class="intro">一張熟悉的照片，一段動手的時光。<br>先看看作品，再跟著說明書，<br class="desktop-break">把屬於你的畫面慢慢拼起來。</p><div class="humanist-tasks"><a href="https://ricksgemini0857.github.io/lfc-block-painting-effect/" target="_blank" rel="noopener"><span class="task-number">01</span><span><strong>看看我的效果圖</strong><small>輸入姓名，找到你的作品。</small></span><span class="task-arrow">↗</span></a><a href="https://ricksgemini0857.github.io/lfc-manual-query-system/" target="_blank" rel="noopener"><span class="task-number">02</span><span><strong>打開我的拼裝說明書</strong><small>依原有姓名與電話查詢。</small></span><span class="task-arrow">↗</span></a></div><div class="humanist-pdf"><span class="pdf-spine">PDF</span><div><h2>開始之前，先認識邊框。</h2><p>把說明書放在手邊，照著步驟慢慢來。</p><button class="small-link" data-open-pdf>翻開邊框組裝說明書 ↗</button></div></div></div>
+    </section>
+  </main>
+  <footer><span>林爸角落 LFC · 積木畫效果與說明書</span><span>本頁為視覺草稿；作品使用 AI 示意，客戶查詢連回原網站。</span></footer>
+  <div class="concept" role="note"><b id="concept-name"></b><span id="concept-text"></span></div>
+
+  <dialog id="art-dialog" aria-labelledby="art-title"><div class="dialog-bar"><div><span class="eyebrow">LFC ART VIEWER</span><h2 id="art-title">橘貓的日常 <small>AI 展示示意</small></h2></div><button data-close aria-label="關閉作品預覽">關閉 ✕</button></div><div class="art-stage" data-background="gallery"><img src="direction-art.png" alt="完整橘貓積木畫示意" width="1122" height="1402"></div><div class="viewer-footer"><span>展示背景</span><div class="background-options"><button data-background="gallery" aria-pressed="true">展廳</button><button data-background="warm" aria-pressed="false">暖牆</button><button data-background="dark" aria-pressed="false">暗場</button></div><span class="viewer-hint">此為 AI 視覺示意，非實際客戶成品。</span></div></dialog>
+  <dialog id="pdf-dialog" aria-labelledby="pdf-title"><div class="dialog-bar"><div><span class="eyebrow">LFC READING DESK</span><h2 id="pdf-title">邊框組裝說明書</h2></div><button data-close aria-label="關閉說明書預覽">關閉 ✕</button></div><div class="pdf-stage"><iframe title="邊框組裝說明書 PDF" data-src="https://drive.google.com/file/d/1Oe4gyfuH852CJW76j0SpsoaL0wOfd0qM/preview" allow="fullscreen"></iframe></div><div class="viewer-footer"><p>若內嵌文件無法顯示，可在新分頁開啟。</p><a href="https://drive.google.com/file/d/1Oe4gyfuH852CJW76j0SpsoaL0wOfd0qM/view" target="_blank" rel="noopener">開啟原始 PDF ↗</a><a href="https://ricksgemini0857.github.io/lfc-manual-query-system/" target="_blank" rel="noopener">查詢我的說明書 ↗</a></div></dialog>
+</body>
+</html>
