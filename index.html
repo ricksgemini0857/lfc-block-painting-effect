@@ -1,155 +1,22 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LFC 積木畫效果</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;700&display=swap");
-        
-        :root {
-            --bg-dark: #0a0a1a;
-            --primary-glow: #00ffff;
-            --secondary-glow: #9400d3;
-            --text-light: #e0e0e0;
-        }
-
-        body {
-            font-family: "Exo-2", "Noto Sans TC", sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-        }
-
-        .background-animation {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background-image: url("https://images.pexels.com/photos/998641/pexels-photo-998641.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
-            background-size: cover; background-position: center;
-            animation: pulse-bg 20s ease-in-out infinite;
-        }
-
-        @keyframes pulse-bg {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        
-        .main-container {
-            background: rgba(26, 26, 46, 0.6);
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.1), 0 0 50px rgba(148, 0, 211, 0.1);
-            animation: fadeIn 1s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .tech-input {
-            background: rgba(10, 10, 26, 0.7);
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            color: var(--text-light);
-            transition: all 0.3s ease;
-        }
-        .tech-input:focus {
-            background: rgba(10, 10, 26, 0.9);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-            border-color: var(--primary-glow);
-        }
-
-        .tech-button {
-            background: linear-gradient(45deg, var(--primary-glow), var(--secondary-glow));
-            color: #ffffff; border: none;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3), 0 0 20px rgba(148, 0, 211, 0.2);
-            transition: all 0.3s ease;
-        }
-        .tech-button:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.5), 0 0 35px rgba(148, 0, 211, 0.3);
-        }
-        
-        .secondary-button {
-            background-color: rgba(0, 255, 255, 0.1);
-            border: 1px solid var(--primary-glow);
-            color: var(--primary-glow);
-        }
-        .secondary-button:hover {
-            background-color: rgba(0, 255, 255, 0.2);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-        }
-
-        .gallery-card {
-            background: rgba(10, 10, 26, 0.7);
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .gallery-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
-        }
-        .gallery-card .card-loader {
-            border-color: var(--primary-glow);
-            border-top-color: transparent;
-        }
-
-        .loader {
-            width: 48px; height: 48px; border: 3px solid var(--primary-glow);
-            border-radius: 50%; display: inline-block; position: relative;
-            box-sizing: border-box; animation: rotation 1s linear infinite;
-        }
-        .loader::after {
-            content: ""; box-sizing: border-box; position: absolute;
-            left: 50%; top: 50%; transform: translate(-50%, -50%);
-            width: 56px; height: 56px; border-radius: 50%;
-            border: 3px solid; border-color: var(--secondary-glow) transparent;
-        }
-        @keyframes rotation {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1014">
+<meta name="description" content="LFC 積木畫專屬作品展廳，查看為你準備的積木畫效果。">
+<title>LFC 積木畫效果</title>
+<link rel="icon" href="logo.png" type="image/png">
+<link rel="stylesheet" href="studio-v2.css?v=20261023">
+<script src="studio-v2.js?v=20261023" defer></script>
 </head>
-<body class="grid place-items-center min-h-screen p-4">
-    <div class="background-animation"></div>
-
-    <div id="main-container" class="main-container w-full max-w-md rounded-2xl shadow-xl p-8 transition-all duration-500">
-        <!-- 登入畫面 -->
-        <div id="login-view">
-            <div class="text-center">
-                <img src="https://ppt.cc/f5TqJx@.png" alt="LFC Logo" class="mx-auto h-24 w-auto mb-4 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
-                <h1 class="text-3xl font-bold text-white drop-shadow-[0_0_5px_var(--primary-glow)]">積木畫效果展示</h1>
-                <p class="text-gray-300 mt-2">請輸入指定的姓名</p>
-            </div>
-            <div class="space-y-4 mt-6">
-                <div>
-                    <label for="name" class="text-sm font-medium text-gray-300">姓名</label>
-                    <input type="text" id="name" name="name" placeholder="請輸入姓名" class="tech-input mt-1 block w-full px-4 py-3 rounded-lg shadow-sm focus:outline-none transition">
-                </div>
-                <button id="search-btn" class="tech-button w-full font-bold py-3 px-4 rounded-lg shadow-lg">進入效果圖頁面</button>
-            </div>
-            <div id="login-result" class="text-center pt-4"></div>
-        </div>
-
-        <!-- 展示畫面 (預設隱藏) -->
-        <div id="gallery-view" class="hidden">
-             <div class="text-center mb-8">
-                <h1 id="gallery-title" class="text-3xl font-bold text-white drop-shadow-[0_0_5px_var(--primary-glow)]"></h1>
-                <p class="text-gray-300 mt-2">點擊卡片可開啟完整效果圖</p>
-            </div>
-            <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                <!-- 作品卡片將會被動態加到這裡 -->
-            </div>
-            <div class="mt-8 text-center">
-                <button id="back-btn" class="secondary-button font-bold py-2 px-6 rounded-lg transition">返回</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
+<body data-scene="dark">
+<a class="skip-link" href="#main-container">跳至查詢內容</a>
+<header class="site-header"><a class="brand" href="../lfc-block-painting-effect/" aria-label="LFC 積木畫首頁"><img src="logo.png" alt="LFC Logo" width="46" height="46"><div><span class="brand-name">LFC 積木畫</span><span class="brand-caption">MOSAIC ART STUDIO</span></div></a><span class="header-signature">Every memory, a masterpiece.</span><nav class="site-nav" aria-label="客戶服務"><a href="../lfc-block-painting-effect/" aria-current="page">效果圖</a><a href="../lfc-manual-query-system/">說明書</a></nav></header>
+<div class="service-layout"><section class="welcome-panel" aria-labelledby="welcome-heading"><p class="eyebrow">THE ART OF YOUR MEMORIES</p><h1 id="welcome-heading">讓回憶，<br>成為一件<span>作品。</span></h1><p class="welcome-description">有些畫面，值得用另一種方式收藏。<br>從影像到積木，讓每個細節都被好好看見。</p><figure class="hero-stage"><span class="stage-serial">LFC / ARTWORK STUDY<br>DISPLAY NO. 01</span><img class="hero-art" src="studio-art.svg" alt="山湖晨光，原創積木視覺示意，非客戶作品" width="672" height="432"><figcaption><span>MEMORY, MADE TANGIBLE.</span><span>原創視覺示意</span></figcaption></figure></section><main id="main-container" class="service-panel max-w-md"><div id="login-view"><div><div class="service-kicker"><span>PRIVATE ARTWORK VIEWING</span><span class="step-count">作品預覽</span></div><h2 class="panel-heading">開啟你的專屬展廳</h2><p class="panel-description">請輸入指定的姓名，查看為你準備的積木畫效果圖。</p></div><div class="form-fields"><div><label for="name">姓名<span class="field-hint">與提供給我們的姓名一致</span></label><input class="tech-input" type="text" id="name" name="name" placeholder="請輸入姓名" autocomplete="name"></div><button class="tech-button" id="search-btn" type="button"><span>進入效果圖頁面</span><span class="arrow" aria-hidden="true">↗</span></button></div><button type="button" id="demo-btn" class="demo-button"><span aria-hidden="true">◈</span>先看展示效果</button><p class="form-note"><span class="note-mark" aria-hidden="true">i</span><span>以專屬姓名查詢你的作品；也可先看示意素材與展示背景。</span></p><div class="result-feedback" id="login-result" role="status" aria-live="polite"></div></div><div id="gallery-view" class="hidden"><div class="collection-header"><p class="eyebrow">THE PRIVATE COLLECTION</p><h2 id="gallery-title"></h2><p class="collection-description">點擊作品進入裱框展示，也可另開完整原圖。</p></div><div class="display-toolbar"><span>DISPLAY ATMOSPHERE / 展示背景</span><div class="scene-switch" role="group" aria-label="展示背景"><button type="button" data-scene="dark" aria-pressed="true">暗場藝廊</button><button type="button" data-scene="light" aria-pressed="false">柔光展牆</button></div></div><p id="gallery-demo-notice" class="demo-notice"></p><div id="gallery-grid"></div><div class="mt-8 text-center"><button type="button" id="back-btn" class="secondary-button">返回</button></div></div></main></div>
+<section class="journey" aria-label="積木畫創作流程"><div class="journey-item"><span class="journey-number">01</span><div><p>看見作品的可能</p><small>PREVIEW YOUR MEMORY</small></div></div><div class="journey-item"><span class="journey-number">02</span><div><p>為創作做好準備</p><small>YOUR PERSONAL GUIDE</small></div></div><div class="journey-item"><span class="journey-number">03</span><div><p>親手完成這份回憶</p><small>CREATE SOMETHING YOURS</small></div></div></section>
+<footer class="site-footer"><span>LFC 積木畫 · 每一顆，都有回憶的重量。</span><span>CRAFTED AROUND YOUR STORY.</span></footer>
+<script>
         // --- 設定區 ---
         // ！！！請將下方網址替換成您在步驟二複製的 "全新" 網頁應用程式網址！！！
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw3UP_fUUUfDJi9cS-wdixuxiE3gY-Vf-ivAGoVt5IyaMaoc3_U64BIWHE-mjH_p8AS/exec";
@@ -276,4 +143,3 @@
     </script>
 </body>
 </html>
-
