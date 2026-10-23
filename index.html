@@ -1,155 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LFC 積木畫效果</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;700&display=swap");
-        
-        :root {
-            --bg-dark: #0a0a1a;
-            --primary-glow: #00ffff;
-            --secondary-glow: #9400d3;
-            --text-light: #e0e0e0;
-        }
-
-        body {
-            font-family: "Exo-2", "Noto Sans TC", sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-        }
-
-        .background-animation {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background-image: url("https://images.pexels.com/photos/998641/pexels-photo-998641.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
-            background-size: cover; background-position: center;
-            animation: pulse-bg 20s ease-in-out infinite;
-        }
-
-        @keyframes pulse-bg {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        
-        .main-container {
-            background: rgba(26, 26, 46, 0.6);
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.1), 0 0 50px rgba(148, 0, 211, 0.1);
-            animation: fadeIn 1s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .tech-input {
-            background: rgba(10, 10, 26, 0.7);
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            color: var(--text-light);
-            transition: all 0.3s ease;
-        }
-        .tech-input:focus {
-            background: rgba(10, 10, 26, 0.9);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-            border-color: var(--primary-glow);
-        }
-
-        .tech-button {
-            background: linear-gradient(45deg, var(--primary-glow), var(--secondary-glow));
-            color: #ffffff; border: none;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3), 0 0 20px rgba(148, 0, 211, 0.2);
-            transition: all 0.3s ease;
-        }
-        .tech-button:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.5), 0 0 35px rgba(148, 0, 211, 0.3);
-        }
-        
-        .secondary-button {
-            background-color: rgba(0, 255, 255, 0.1);
-            border: 1px solid var(--primary-glow);
-            color: var(--primary-glow);
-        }
-        .secondary-button:hover {
-            background-color: rgba(0, 255, 255, 0.2);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-        }
-
-        .gallery-card {
-            background: rgba(10, 10, 26, 0.7);
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .gallery-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
-        }
-        .gallery-card .card-loader {
-            border-color: var(--primary-glow);
-            border-top-color: transparent;
-        }
-
-        .loader {
-            width: 48px; height: 48px; border: 3px solid var(--primary-glow);
-            border-radius: 50%; display: inline-block; position: relative;
-            box-sizing: border-box; animation: rotation 1s linear infinite;
-        }
-        .loader::after {
-            content: ""; box-sizing: border-box; position: absolute;
-            left: 50%; top: 50%; transform: translate(-50%, -50%);
-            width: 56px; height: 56px; border-radius: 50%;
-            border: 3px solid; border-color: var(--secondary-glow) transparent;
-        }
-        @keyframes rotation {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>LFC 積木畫效果｜姓名查詢</title>
+  <meta name="description" content="輸入指定姓名，查看林爸角落 LFC 積木畫效果圖與走廊展示情境。">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="customer-effect.css?v=b-query-1">
+  <script defer src="customer-effect.js?v=b-query-1"></script>
 </head>
-<body class="grid place-items-center min-h-screen p-4">
-    <div class="background-animation"></div>
-
-    <div id="main-container" class="main-container w-full max-w-md rounded-2xl shadow-xl p-8 transition-all duration-500">
-        <!-- 登入畫面 -->
-        <div id="login-view">
-            <div class="text-center">
-                <img src="https://ppt.cc/f5TqJx@.png" alt="LFC Logo" class="mx-auto h-24 w-auto mb-4 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
-                <h1 class="text-3xl font-bold text-white drop-shadow-[0_0_5px_var(--primary-glow)]">積木畫效果展示</h1>
-                <p class="text-gray-300 mt-2">請輸入指定的姓名</p>
-            </div>
-            <div class="space-y-4 mt-6">
-                <div>
-                    <label for="name" class="text-sm font-medium text-gray-300">姓名</label>
-                    <input type="text" id="name" name="name" placeholder="請輸入姓名" class="tech-input mt-1 block w-full px-4 py-3 rounded-lg shadow-sm focus:outline-none transition">
-                </div>
-                <button id="search-btn" class="tech-button w-full font-bold py-3 px-4 rounded-lg shadow-lg">進入效果圖頁面</button>
-            </div>
-            <div id="login-result" class="text-center pt-4"></div>
-        </div>
-
-        <!-- 展示畫面 (預設隱藏) -->
-        <div id="gallery-view" class="hidden">
-             <div class="text-center mb-8">
-                <h1 id="gallery-title" class="text-3xl font-bold text-white drop-shadow-[0_0_5px_var(--primary-glow)]"></h1>
-                <p class="text-gray-300 mt-2">點擊卡片可開啟完整效果圖</p>
-            </div>
-            <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                <!-- 作品卡片將會被動態加到這裡 -->
-            </div>
-            <div class="mt-8 text-center">
-                <button id="back-btn" class="secondary-button font-bold py-2 px-6 rounded-lg transition">返回</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
+<body>
+  <a class="skip-link" href="#name">跳至姓名查詢</a>
+  <header class="site-header"><a class="brand" href="./" aria-label="LFC 積木畫效果查詢首頁"><img src="direction-logo.png" alt="LFC" width="48" height="48"><span>林爸角落<small>LFC BRICK ART</small></span></a><nav aria-label="客戶服務"><a href="./" aria-current="page">效果圖查詢</a><a href="https://ricksgemini0857.github.io/lfc-manual-query-system/">說明書查詢 ↗</a></nav></header>
+  <main id="main-container" class="max-w-md" data-view="lookup">
+    <section id="login-view" class="lookup-layout" aria-labelledby="lookup-title">
+      <div class="lookup-story"><p class="eyebrow">LFC / YOUR BRICK ART</p><h1 id="lookup-title">看看你的<br>積木<span>畫。</span></h1><p class="story-intro">輸入指定的姓名，<br>讓喜歡的畫面，出現在眼前。</p><figure class="story-room"><div class="room-composition"><img class="room-photo" src="hallway-room.png" alt="暖白牆與木地板的走廊展示示意" width="1536" height="1024"><div class="sample-frame"><img src="direction-art.png" alt="海報大小的橘貓積木畫 AI 示意" width="1122" height="1402"></div></div><figcaption><span>把喜歡，掛進日常。</span><small>AI 情境與作品示意</small></figcaption></figure></div>
+      <form class="lookup-panel" id="customer-lookup-form" aria-labelledby="form-title"><p class="panel-index">作品查詢 <span>↘</span></p><h2 id="form-title">找到你的作品</h2><p class="form-help">請使用下單時提供或指定的姓名。</p><label for="name">姓名</label><input id="name" name="name" type="text" autocomplete="name" aria-required="true" placeholder="請輸入指定的姓名" aria-describedby="name-hint"><p id="name-hint" class="input-hint">請確認姓名與收到的查詢資訊一致。</p><button type="button" id="search-btn" class="search-button"><span>進入效果圖頁面</span><span aria-hidden="true">↗</span></button><div id="login-result" role="status" aria-live="polite" aria-atomic="true"></div><div class="panel-links"><a href="?demo=1">先看展示示意 ↗</a><a href="https://ricksgemini0857.github.io/lfc-manual-query-system/">我要查詢拼裝說明書 ↗</a></div></form>
+    </section>
+    <section id="gallery-view" class="hidden" aria-labelledby="gallery-title"><div class="gallery-heading"><div><p class="eyebrow">LFC / YOUR ARTWORK</p><h1 id="gallery-title" tabindex="-1"></h1><p>點擊作品，看看走廊情境；也能放大查看完整原圖。</p></div><button type="button" id="back-btn" class="back-button">← 返回姓名查詢</button></div><p id="gallery-demo-notice" class="demo-notice hidden" role="status">展示示意｜以下為 AI 示意作品，非客戶訂單。</p><div id="gallery-grid"></div></section>
+  </main>
+  <footer class="site-footer"><span>林爸角落 LFC · 積木畫效果</span><a href="https://ricksgemini0857.github.io/lfc-manual-query-system/">拼裝說明書查詢 ↗</a></footer>
+  <dialog id="customer-art-dialog" aria-labelledby="customer-art-title"><div class="viewer-header"><div><p class="eyebrow">LFC / ART VIEWER</p><h2 id="customer-art-title">積木畫效果</h2></div><button type="button" id="close-art" aria-label="關閉作品預覽">關閉 ✕</button></div><div class="viewer-stage" data-mode="room"><div class="viewer-room"><img class="room-photo" src="hallway-room.png" alt="AI 走廊展示情境" width="1536" height="1024"><div class="room-mounted"><img class="room-art" alt="積木畫在走廊牆上的展示"></div></div><img class="detail-art" alt="完整積木畫效果圖"></div><div class="viewer-controls"><div class="mode-options" aria-label="作品展示方式"><button type="button" data-view-mode="room" aria-pressed="true">走廊情境</button><button type="button" data-view-mode="detail" aria-pressed="false">原圖細節</button></div><a id="viewer-original" target="_blank" rel="noopener noreferrer">開啟原圖 ↗</a></div><p id="viewer-status" class="viewer-status" role="status">AI 情境以長邊 60 公分、牆高 260 公分示意；實際尺寸以訂單為準。</p></dialog>
+  <script>
         // --- 設定區 ---
         // ！！！請將下方網址替換成您在步驟二複製的 "全新" 網頁應用程式網址！！！
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw3UP_fUUUfDJi9cS-wdixuxiE3gY-Vf-ivAGoVt5IyaMaoc3_U64BIWHE-mjH_p8AS/exec";
@@ -276,4 +148,3 @@
     </script>
 </body>
 </html>
-
