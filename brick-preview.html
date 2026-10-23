@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>LFC 積木畫效果｜姓名查詢</title>
+  <meta name="description" content="輸入指定姓名，查看林爸角落 LFC 積木畫效果圖與走廊展示情境。">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="customer-effect.css?v=b-query-3">
+  <script defer src="customer-effect.js?v=b-query-3"></script>
+<link rel="stylesheet" href="brick-theme.css?v=brick-1">
+</head>
+<body class="brick-design">
+  <a class="skip-link" href="#name">跳至姓名查詢</a>
+  <header class="site-header"><a class="brand" href="brick-preview.html" aria-label="LFC 積木畫效果查詢首頁"><img src="direction-logo.png" alt="LFC" width="48" height="48"><span>林爸角落<small>LFC BRICK ART</small></span></a><nav aria-label="客戶服務"><a href="brick-preview.html" aria-current="page">效果圖查詢</a><a href="https://ricksgemini0857.github.io/lfc-manual-query-system/brick-preview.html">說明書查詢 ↗</a></nav></header>
+  <main id="main-container" class="max-w-md" data-view="lookup">
+    <section id="login-view" class="lookup-layout" aria-labelledby="lookup-title">
+      <div class="lookup-story"><p class="eyebrow">LFC / YOUR BRICK ART</p><h1 id="lookup-title"><span class="title-line">看看你的</span><span class="title-line">積木<span>畫。</span></span></h1><p class="story-intro">輸入指定的姓名，<br>讓喜歡的畫面，出現在眼前。</p><figure class="story-room"><div class="room-composition"><img class="room-photo" src="hallway-room.png" alt="暖白牆與木地板的走廊展示示意" width="1536" height="1024"><div class="sample-frame"><img src="direction-art.png" alt="海報大小的橘貓積木畫 AI 示意" width="1122" height="1402"></div></div><figcaption><span>把喜歡，掛進日常。</span><small>AI 情境與作品示意</small></figcaption></figure></div>
+      <form class="lookup-panel" id="customer-lookup-form" aria-labelledby="form-title"><div class="stud-rail" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div><p class="panel-index">作品查詢 <span>↘</span></p><h2 id="form-title">找到你的效果圖</h2><p class="form-help">請使用下單時提供或指定的姓名。</p><label for="name">姓名</label><input id="name" name="name" type="text" autocomplete="name" aria-required="true" placeholder="請輸入指定的姓名" aria-describedby="name-hint"><p id="name-hint" class="input-hint">請確認姓名與收到的查詢資訊一致。</p><button type="button" id="search-btn" class="search-button"><span>進入效果圖頁面</span><span aria-hidden="true">↗</span></button><div id="login-result" role="status" aria-live="polite" aria-atomic="true"></div><div class="panel-links"><a href="?demo=1">先看展示示意 ↗</a><a href="https://ricksgemini0857.github.io/lfc-manual-query-system/brick-preview.html">我要查詢拼裝說明書 ↗</a></div></form>
+    </section>
+    <section id="gallery-view" class="hidden" aria-labelledby="gallery-title"><div class="gallery-heading"><div><p class="eyebrow">LFC / YOUR ARTWORK</p><h1 id="gallery-title" tabindex="-1"></h1><p>點擊作品，看看走廊情境；也能放大查看完整原圖。</p></div><button type="button" id="back-btn" class="back-button">← 返回姓名查詢</button></div><p id="gallery-demo-notice" class="demo-notice hidden" role="status">展示示意｜以下為 AI 示意作品，非客戶訂單。</p><div id="gallery-grid"></div></section>
+  </main>
+  <footer class="site-footer"><span>林爸角落 LFC · 積木畫效果</span><a href="https://ricksgemini0857.github.io/lfc-manual-query-system/brick-preview.html">拼裝說明書查詢 ↗</a></footer>
+  <dialog id="customer-art-dialog" aria-labelledby="customer-art-title"><div class="viewer-header"><div><p class="eyebrow">LFC / ART VIEWER</p><h2 id="customer-art-title">積木畫效果</h2></div><button type="button" id="close-art" aria-label="關閉作品預覽">關閉 ✕</button></div><div class="viewer-stage" data-mode="room"><div class="viewer-room"><img class="room-photo" src="hallway-room.png" alt="AI 走廊展示情境" width="1536" height="1024"><div class="room-mounted"><img class="room-art" alt="積木畫在走廊牆上的展示"></div></div><img class="detail-art" alt="完整積木畫效果圖"></div><div class="viewer-controls"><div class="mode-options" aria-label="作品展示方式"><button type="button" data-view-mode="room" aria-pressed="true">走廊情境</button><button type="button" data-view-mode="detail" aria-pressed="false">原圖細節</button></div><a id="viewer-original" target="_blank" rel="noopener noreferrer">開啟原圖 ↗</a></div><div class="viewer-crop-controls"><label for="room-crop">走廊取圖</label><select id="room-crop"><option value="auto">自動取左圖／上圖</option><option value="left">只取左圖</option><option value="top">只取上圖</option><option value="full">顯示整張</option></select></div><p id="viewer-status" class="viewer-status" role="status">AI 情境以長邊 60 公分、牆高 260 公分示意；實際尺寸以訂單為準。</p></dialog>
+  <script>
+        // --- 設定區 ---
+        // ！！！請將下方網址替換成您在步驟二複製的 "全新" 網頁應用程式網址！！！
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw3UP_fUUUfDJi9cS-wdixuxiE3gY-Vf-ivAGoVt5IyaMaoc3_U64BIWHE-mjH_p8AS/exec";
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const mainContainer = document.getElementById("main-container");
+            const loginView = document.getElementById("login-view");
+            const galleryView = document.getElementById("gallery-view");
+            const nameInput = document.getElementById("name");
+            const searchBtn = document.getElementById("search-btn");
+            const backBtn = document.getElementById("back-btn");
+            const loginResult = document.getElementById("login-result");
+            const galleryGrid = document.getElementById("gallery-grid");
+            const galleryTitle = document.getElementById("gallery-title");
+
+            function getGoogleDriveFileId(url) {
+                if (!url) return null;
+                let match = url.match(/d\/(.*?)(?:\/view|\?|$)/);
+                if (match && match[1]) return match[1];
+                match = url.match(/id=([^&]+)/);
+                if (match && match[1]) return match[1];
+                return null;
+            }
+            
+            async function loadThumbnails() {
+                const cards = document.querySelectorAll(".gallery-card[data-fileid]");
+                for (const card of cards) {
+                    const fileId = card.dataset.fileid;
+                    const remark = card.dataset.remark || "";
+                    try {
+                        const response = await fetch(`${SCRIPT_URL}?action=getThumbnail&id=${fileId}`);
+                        const result = await response.json();
+                        if (result.status === "success") {
+                            // 主要修改點: 圖片改為完整顯示 (object-contain)
+                            card.classList.remove("grid", "place-items-center", "aspect-square"); // 移除佔位樣式
+                            card.innerHTML = `
+                                <a href="https://drive.google.com/uc?id=${fileId}" target="_blank" class="block aspect-square bg-black/20 rounded-t-lg">
+                                    <img src="${result.imageUrl}" alt="作品縮圖" class="w-full h-full object-contain">
+                                </a>
+                                ${remark ? `<div class="p-3 text-sm text-center text-gray-300 bg-black/20 rounded-b-lg">${remark}</div>` : ""}
+                            `;
+                        } else {
+                            card.innerHTML = `<div class="p-4 text-center text-xs text-red-400">縮圖載入失敗</div>`;
+                        }
+                    } catch (error) {
+                         card.innerHTML = `<div class="p-4 text-center text-xs text-red-400">縮圖載入失敗</div>`;
+                    }
+                }
+            }
+
+            searchBtn.addEventListener("click", async () => {
+                const name = nameInput.value.trim();
+                if (!name) {
+                    loginResult.innerHTML = `<p class="text-red-400 font-semibold">請務必填寫姓名！</p>`;
+                    return;
+                }
+                
+                if (SCRIPT_URL === "YOUR_NEW_APPS_SCRIPT_URL") {
+                    loginResult.innerHTML = `<p class="text-red-400 font-semibold">錯誤：網站尚未設定完成。</p>`;
+                    return;
+                }
+
+                loginResult.innerHTML = `
+                    <div class="flex justify-center items-center flex-col gap-4">
+                        <div class="loader"></div>
+                        <p class="text-gray-300">正在驗證身份...</p>
+                    </div>`;
+
+                try {
+                    const response = await fetch(`${SCRIPT_URL}?name=${encodeURIComponent(name)}`);
+                    const result = await response.json();
+
+                    if (result.status === "success" && result.data && result.data.length > 0) {
+                        galleryTitle.textContent = `${result.data[0].name} 的積木畫效果展示`;
+                        galleryGrid.innerHTML = "";
+                        
+                        result.data.forEach(entry => {
+                            const urls = entry.fileUrl.split(",");
+                            const remarks = (entry.remarks || "").split(",");
+
+                            urls.forEach((url, index) => {
+                                const trimmedUrl = url.trim();
+                                if (trimmedUrl) {
+                                    const fileId = getGoogleDriveFileId(trimmedUrl);
+                                    if (fileId) {
+                                        const remark = remarks[index] ? remarks[index].trim() : "";
+                                        // 建立卡片佔位符
+                                        const cardElement = document.createElement("div");
+                                        cardElement.className = "gallery-card block rounded-lg";
+                                        cardElement.dataset.fileid = fileId;
+                                        cardElement.dataset.remark = remark;
+                                        cardElement.innerHTML = `<div class="aspect-square grid place-items-center"><div class="card-loader w-8 h-8 border-2 rounded-full animate-spin"></div></div>`;
+                                        galleryGrid.appendChild(cardElement);
+                                    }
+                                }
+                            });
+                        });
+                        
+                        mainContainer.classList.remove("max-w-md");
+                        mainContainer.classList.add("max-w-5xl");
+                        loginView.classList.add("hidden");
+                        galleryView.classList.remove("hidden");
+
+                        loadThumbnails(); // 開始載入縮圖
+
+                    } else {
+                        loginResult.innerHTML = `<p class="text-orange-400 font-semibold">${result.message || "找不到此姓名的作品。"} (後端版本: ${result.script_version || "未知"})</p>`;
+                    }
+                } catch (error) {
+                    console.error("查詢失敗:", error);
+                    loginResult.innerHTML = `<p class="text-red-400 font-semibold">查詢失敗，請檢查網路連線。</p>`;
+                }
+            });
+            
+            backBtn.addEventListener("click", () => {
+                mainContainer.classList.remove("max-w-5xl");
+                mainContainer.classList.add("max-w-md");
+                galleryView.classList.add("hidden");
+                loginView.classList.remove("hidden");
+                loginResult.innerHTML = "";
+                nameInput.value = "";
+            });
+        });
+    </script>
+</body>
+</html>
