@@ -2,25 +2,35 @@
   'use strict';
   function init(){
     const name=document.getElementById('name'),search=document.getElementById('search-btn'),login=document.getElementById('login-view'),gallery=document.getElementById('gallery-view'),grid=document.getElementById('gallery-grid'),status=document.getElementById('login-result'),main=document.getElementById('main-container'),notice=document.getElementById('gallery-demo-notice');
-    const dialog=document.getElementById('customer-art-dialog'),stage=dialog.querySelector('.viewer-stage'),roomArt=dialog.querySelector('.room-art'),detailArt=dialog.querySelector('.detail-art'),original=document.getElementById('viewer-original'),viewerStatus=document.getElementById('viewer-status');
-    const normalStatus='AI 情境以長邊 60 公分、牆高 260 公分示意；實際尺寸以訂單為準。';
-    let returnFocus=null;
-    function setMode(mode){stage.dataset.mode=mode;dialog.querySelectorAll('[data-view-mode]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.viewMode===mode)));}
+    const dialog=document.getElementById('customer-art-dialog'),stage=dialog.querySelector('.viewer-stage'),roomArt=dialog.querySelector('.room-art'),detailArt=dialog.querySelector('.detail-art'),original=document.getElementById('viewer-original'),viewerStatus=document.getElementById('viewer-status'),cropSelect=document.getElementById('room-crop'),cropControls=dialog.querySelector('.viewer-crop-controls'),mount=dialog.querySelector('.room-mounted');
+    let returnFocus=null,activeCard=null,artWidth=0,artHeight=0;
+    function updateStatus(){
+      const sample=dialog.dataset.sample==='true'?'AI 展示作品，非客戶訂單。':'';
+      if(stage.dataset.mode==='detail'){viewerStatus.textContent=sample+'原圖細節保留完整圖片與對照內容。';return;}
+      const label={left:'左圖',top:'上圖',full:'整張圖片'}[mount.dataset.crop]||'圖片';
+      viewerStatus.textContent=sample+`走廊取用${label}；AI 情境以長邊 60 公分、牆高 260 公分示意，實際尺寸以訂單為準。`;
+    }
+    function setMode(mode){stage.dataset.mode=mode;cropControls.hidden=mode!=='room';dialog.querySelectorAll('[data-view-mode]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.viewMode===mode)));updateStatus();}
     function scaleArtwork(){
-      const aspect=dialog.dataset.sample==='true' ? .753 : (roomArt.naturalWidth/roomArt.naturalHeight||.753);
+      const crop=cropSelect.value==='auto'?(artWidth>=artHeight?'left':'top'):cropSelect.value;
+      mount.dataset.crop=crop;
+      const croppedWidth=artWidth*(crop==='left' ? .5 : 1),croppedHeight=artHeight*(crop==='top' ? .5 : 1);
+      const aspect=dialog.dataset.sample==='true'&&crop==='full' ? .753 : (croppedWidth/croppedHeight||.753);
       const heightCm=aspect>1?60/aspect:60,widthCm=heightCm*aspect,pxPerCm=726/260,heightPx=heightCm*pxPerCm,widthPx=widthCm*pxPerCm;
       dialog.style.setProperty('--mounted-aspect',String(aspect));
       dialog.style.setProperty('--mounted-width',`${widthPx/1536*100}%`);
       dialog.style.setProperty('--mounted-left',`${(1536*.675-widthPx/2)/1536*100}%`);
       dialog.style.setProperty('--mounted-top',`${(780-(150+heightCm/2)*pxPerCm)/1024*100}%`);
+      updateStatus();
     }
-    roomArt.addEventListener('load',scaleArtwork);
+    roomArt.addEventListener('load',()=>{artWidth=roomArt.naturalWidth;artHeight=roomArt.naturalHeight;scaleArtwork();});
     roomArt.addEventListener('error',()=>{viewerStatus.textContent='圖片暫時無法顯示，請使用「開啟原圖」查看。';});
+    cropSelect.addEventListener('change',()=>{if(activeCard)activeCard.dataset.roomCrop=cropSelect.value;scaleArtwork();});
     function openArtwork(card,mode){
       const anchor=card.querySelector('a'),image=anchor?.querySelector('img');if(!image)return;
-      returnFocus=document.activeElement;dialog.dataset.sample=String(card.dataset.sample==='true');
+      returnFocus=document.activeElement;activeCard=card;artWidth=image.naturalWidth;artHeight=image.naturalHeight;dialog.dataset.sample=String(card.dataset.sample==='true');
+      cropSelect.value=card.dataset.roomCrop||(card.dataset.sample==='true'?'full':'auto');
       document.getElementById('customer-art-title').textContent=card.dataset.remark||'積木畫效果';
-      viewerStatus.textContent=card.dataset.sample==='true'?'展示示意｜AI 作品，非客戶訂單。情境以畫高 60 公分、牆高 260 公分示意。':normalStatus;
       original.href=anchor.href;roomArt.src=image.currentSrc||image.src;detailArt.src=image.currentSrc||image.src;scaleArtwork();setMode(mode);dialog.showModal();document.body.classList.add('dialog-open');
     }
     document.getElementById('close-art').addEventListener('click',()=>dialog.close());

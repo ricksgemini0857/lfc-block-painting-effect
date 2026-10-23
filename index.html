@@ -6,8 +6,8 @@
   <meta name="description" content="輸入指定姓名，查看林爸角落 LFC 積木畫效果圖與走廊展示情境。">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="customer-effect.css?v=b-query-1">
-  <script defer src="customer-effect.js?v=b-query-1"></script>
+  <link rel="stylesheet" href="customer-effect.css?v=b-query-2">
+  <script defer src="customer-effect.js?v=b-query-2"></script>
 </head>
 <body>
   <a class="skip-link" href="#name">跳至姓名查詢</a>
@@ -20,7 +20,7 @@
     <section id="gallery-view" class="hidden" aria-labelledby="gallery-title"><div class="gallery-heading"><div><p class="eyebrow">LFC / YOUR ARTWORK</p><h1 id="gallery-title" tabindex="-1"></h1><p>點擊作品，看看走廊情境；也能放大查看完整原圖。</p></div><button type="button" id="back-btn" class="back-button">← 返回姓名查詢</button></div><p id="gallery-demo-notice" class="demo-notice hidden" role="status">展示示意｜以下為 AI 示意作品，非客戶訂單。</p><div id="gallery-grid"></div></section>
   </main>
   <footer class="site-footer"><span>林爸角落 LFC · 積木畫效果</span><a href="https://ricksgemini0857.github.io/lfc-manual-query-system/">拼裝說明書查詢 ↗</a></footer>
-  <dialog id="customer-art-dialog" aria-labelledby="customer-art-title"><div class="viewer-header"><div><p class="eyebrow">LFC / ART VIEWER</p><h2 id="customer-art-title">積木畫效果</h2></div><button type="button" id="close-art" aria-label="關閉作品預覽">關閉 ✕</button></div><div class="viewer-stage" data-mode="room"><div class="viewer-room"><img class="room-photo" src="hallway-room.png" alt="AI 走廊展示情境" width="1536" height="1024"><div class="room-mounted"><img class="room-art" alt="積木畫在走廊牆上的展示"></div></div><img class="detail-art" alt="完整積木畫效果圖"></div><div class="viewer-controls"><div class="mode-options" aria-label="作品展示方式"><button type="button" data-view-mode="room" aria-pressed="true">走廊情境</button><button type="button" data-view-mode="detail" aria-pressed="false">原圖細節</button></div><a id="viewer-original" target="_blank" rel="noopener noreferrer">開啟原圖 ↗</a></div><p id="viewer-status" class="viewer-status" role="status">AI 情境以長邊 60 公分、牆高 260 公分示意；實際尺寸以訂單為準。</p></dialog>
+  <dialog id="customer-art-dialog" aria-labelledby="customer-art-title"><div class="viewer-header"><div><p class="eyebrow">LFC / ART VIEWER</p><h2 id="customer-art-title">積木畫效果</h2></div><button type="button" id="close-art" aria-label="關閉作品預覽">關閉 ✕</button></div><div class="viewer-stage" data-mode="room"><div class="viewer-room"><img class="room-photo" src="hallway-room.png" alt="AI 走廊展示情境" width="1536" height="1024"><div class="room-mounted"><img class="room-art" alt="積木畫在走廊牆上的展示"></div></div><img class="detail-art" alt="完整積木畫效果圖"></div><div class="viewer-controls"><div class="mode-options" aria-label="作品展示方式"><button type="button" data-view-mode="room" aria-pressed="true">走廊情境</button><button type="button" data-view-mode="detail" aria-pressed="false">原圖細節</button></div><a id="viewer-original" target="_blank" rel="noopener noreferrer">開啟原圖 ↗</a></div><div class="viewer-crop-controls"><label for="room-crop">走廊取圖</label><select id="room-crop"><option value="auto">自動取左圖／上圖</option><option value="left">只取左圖</option><option value="top">只取上圖</option><option value="full">顯示整張</option></select></div><p id="viewer-status" class="viewer-status" role="status">AI 情境以長邊 60 公分、牆高 260 公分示意；實際尺寸以訂單為準。</p></dialog>
   <script>
         // --- 設定區 ---
         // ！！！請將下方網址替換成您在步驟二複製的 "全新" 網頁應用程式網址！！！
